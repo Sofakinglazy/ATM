@@ -17,6 +17,11 @@ public class ATM {
 		printMessage(stars + StringUtil.center(message, stars.length()) + stars);
 	}
 	
+	public void printStarMessage(String message, int num){
+		String s = String.format(message, num);
+		printStarMessage(s);
+	}
+	
 	public boolean selectFunction(int num){		
 		switch (num){
 			case 1: withdraw();
@@ -34,26 +39,25 @@ public class ATM {
 	}
 	
 	private void quit() {
-		
+		printStarMessage(Messages.QUIT_TITLE);
 	}
 
 	private void printErrorMess() {
-		
+		printMessage(Messages.ERROR_MESSAGE);
 	}
 
 	private void inquire() {
-		// TODO Auto-generated method stub
-		
+		printStarMessage(Messages.INQUIRE_TITLE, getBalance());
 	}
 
 	private void deposit() {
-		// TODO Auto-generated method stub
-		
+		printStarMessage(Messages.DEPOSIT_TITLE);
+		printMessage(Messages.DEPOSIT_MESSAGE);
 	}
 
 	private void withdraw() {
-		// TODO Auto-generated method stub
-		
+		printStarMessage(Messages.WITHDRAW_TITLE);
+		printMessage(Messages.WITHDRAW_MESSGAE);
 	}
 
 	public void setBalance(int balance){
