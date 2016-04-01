@@ -1,5 +1,7 @@
 package atm;
 
+import java.util.Scanner;
+
 public class ATM {
 	
 	private int balance;
@@ -20,6 +22,11 @@ public class ATM {
 	public void printStarMessage(String message, int num){
 		String s = String.format(message, num);
 		printStarMessage(s);
+	}
+	
+	public void init(){
+		printMessage(Messages.WELCOME_MESSAGE);
+		balance = getInput();
 	}
 	
 	public boolean selectFunction(int num){		
@@ -53,11 +60,22 @@ public class ATM {
 	private void deposit() {
 		printStarMessage(Messages.DEPOSIT_TITLE);
 		printMessage(Messages.DEPOSIT_MESSAGE);
+		
+		balance += getInput();
 	}
 
 	private void withdraw() {
 		printStarMessage(Messages.WITHDRAW_TITLE);
 		printMessage(Messages.WITHDRAW_MESSGAE);
+		
+		balance -= getInput();
+	}
+
+	private int getInput() {
+		Scanner input = new Scanner(System.in);
+		int num = input.nextInt();
+		input.close();
+		return num;
 	}
 
 	public void setBalance(int balance){
@@ -68,5 +86,8 @@ public class ATM {
 		return balance;
 	}
 	
-	
+	public void run(){
+		init();
+		selectFunction();
+	}
 }
