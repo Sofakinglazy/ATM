@@ -12,7 +12,8 @@ public class Messages {
 			+ "4 : Quit \n"
 			+ "Enter your number: ";
 	
-	public static final String ERROR_MESSAGE = "The number you entered is illegal! Operation was abortion.";
+	public static final String ILLEGE_NUM_ERROR_MESSAGE = "The number you entered is illegal! "
+			+ "Operation was abortion.";
 	
 	public static final String WITHDRAW_MESSGAE = "How much would you like to withdraw?\n"
 			+ "Enter your number: ";
@@ -27,6 +28,36 @@ public class Messages {
 	public static final String QUIT_TITLE = "GoodBye!";
 	
 	public static final String INQUIRE_TITLE = "Your balance is %d";
+	
+	public static final String BANK_WELCOME_MESSAGE = "Welcome to Sainsburys bank.";
+	
+	public static final String BANK_FUNCTION_MESSAGE = "What do you want to do? \n"
+			+ "1 : Sign up an account \n"
+			+ "2 : Sign in an account \n"
+			+ "3 : Quit \n"
+			+ "Enter your number: ";
+	
+	public static final String SIGNUP_TITLE = "Sign Up";
+	
+	public static final String SIGNIN_TITLE = "Sign In";
+	
+	public static final String ACCOUNT_MESSAGE = "Please enter your account number: ";
+	
+	public static final String PIN_MESSAGE = "Please enter your 4-digits PIN: ";
+	
+	public static final String PIN_VERIFY_MESSAGE = "Please enter your 4-digits PIN again: "; 
+	
+	public static final String PIN_VERIFY_ERROR_MESSAGE = "The PIN you entered were not the same!";
+	
+	public static final String ACCOUNT_OCCUPIED_MESSAGE = "The Account you entered has been taken!";
+	
+	public static final String ACCOUNT_ERROR_MESSAGE = "The Account you entered doesn't exsit."
+			+ "Please enter it again.";
+	
+	public static final String PIN_ERROR_MESSAGE = "The PIN you entered was wrong"
+			+ "Please enter it again.";
+	
+	public static final String BANK_QUIT_MESSAGE = "Thank you for using Sainsburys bank.";
 	
 	public static void printMessage(String message){
 		System.out.println(message);

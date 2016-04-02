@@ -9,9 +9,11 @@ public class ATM {
 	private int account;
 	private int PIN;
 	
-	public ATM(){
+	public ATM(int account, int PIN){
 		input = new Scanner(System.in);
 		balance = 0;
+		this.account = account;
+		this.PIN = PIN;
 	}
 	
 	public void init(){
@@ -42,7 +44,7 @@ public class ATM {
 	}
 
 	private void printErrorMess() {
-		Messages.printMessage(Messages.ERROR_MESSAGE);
+		Messages.printMessage(Messages.ILLEGE_NUM_ERROR_MESSAGE);
 	}
 
 	private void inquire() {
@@ -63,13 +65,13 @@ public class ATM {
 		if (balance >= num)
 			balance -= num;
 		else 
-			Messages.printMessage(Messages.ERROR_MESSAGE);	
+			Messages.printMessage(Messages.ILLEGE_NUM_ERROR_MESSAGE);	
 	}
 
 	private int getInput() {
 		int num = input.nextInt();
 		if (num < 0){
-			Messages.printMessage(Messages.ERROR_MESSAGE);
+			Messages.printMessage(Messages.ILLEGE_NUM_ERROR_MESSAGE);
 			return 0;
 		} else {
 			return num;
@@ -86,6 +88,10 @@ public class ATM {
 	
 	public void setAccount(int account){
 		this.account = account;
+	}
+	
+	public int getAccount(){
+		return account;
 	}
 	
 	public void setPIN(int PIN){
