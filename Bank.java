@@ -4,25 +4,25 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Bank {
-	private Scanner sb;
+	private Scanner input;
 	private ArrayList<ATM> bank;
 	
 	public Bank(){
 		bank = new ArrayList<ATM>();
-		sb = new Scanner(System.in);
+		input = new Scanner(System.in);
 	}
 	
 	public void init(){
-		Messages.printMessage(Messages.BANK_WELCOME_MESSAGE);
+		Messages.printStarMessage(Messages.BANK_WELCOME_MESSAGE);
 	}
 	
-	public boolean selectFunction(){
+	public boolean selectFunction() throws InterruptedException{
 		Messages.printMessage(Messages.BANK_FUNCTION_MESSAGE);
-		int num = getInput();
-		switch (num){
-			case 1: signIn();
+		int option = getInput();
+		switch (option){
+			case 1: signUp();
 					break;
-			case 2: signUp();
+			case 2: signIn();
 					break;
 			case 3: quit();
 					return false;
@@ -30,7 +30,7 @@ public class Bank {
 		}
 		return true;
 	}
-	
+
 	private void quit() {
 		Messages.printMessage(Messages.BANK_QUIT_MESSAGE);
 	}
@@ -50,6 +50,10 @@ public class Bank {
 			}	
 			Messages.printMessage(Messages.PIN_MESSAGE);
 			PIN = getInput();
+			while (!isLegalPIN(PIN)){
+				Messages.printMessage(Messages.ILLEGE_NUM_ERROR_MESSAGE);
+				PIN = getInput();
+			}
 			Messages.printMessage(Messages.PIN_VERIFY_MESSAGE);
 			PIN1 = getInput();
 			if(!isSamePIN(PIN, PIN1)){
@@ -59,21 +63,32 @@ public class Bank {
 			isValid = true;
 		}
 		bank.add(new ATM(account, PIN));
+		Messages.printMessage(Messages.SIGNUP_SUCCESS_MESSAGE, account);
 	}
 
-	private boolean signIn() {
+	private void signIn() throws InterruptedException {
 		Messages.printStarMessage(Messages.SIGNIN_TITLE);
 		Messages.printMessage(Messages.ACCOUNT_MESSAGE);
-		boolean isMatched = false;
 		int account = 0;
-		while (!isMatched){
+		int PIN = 0;
+		while (true){
 			account = getInput();
 			if (isSameAccount(account)){
-				isMatched = true;
+				break;
 			}
 			Messages.printMessage(Messages.ACCOUNT_ERROR_MESSAGE);
 		}
-		return isMatched;
+		ATM atm = getATMbyAccount(account);
+		Messages.printMessage(Messages.PIN_MESSAGE);
+		while(true){
+			PIN = getInput();
+			if (isSamePIN(PIN, atm.getPIN()))
+				break;
+			Messages.printMessage(Messages.PIN_ERROR_MESSAGE);
+		}
+		Messages.printMessage(Messages.SIGNIN_SUCCESS_MESSAGE);
+		Messages.printStarMessage(Messages.SIGNIN_SUCCESS_TITLE, account);
+		atm.run();
 	}
 	
 	private boolean isSameAccount(int account) {
@@ -84,20 +99,41 @@ public class Bank {
 		return false;
 	}
 	
+	private ATM getATMbyAccount(int account){
+		for (ATM i : bank){
+			if(i.getAccount() == account)
+				return i;
+		}
+		return null;
+	}
+	
 	private boolean isSamePIN(int PIN, int PIN1){
 		return PIN == PIN1;
 	}
+	
+	private boolean isLegalPIN(int PIN){
+		return String.valueOf(PIN).length() == 4;
+	}
 
 	private int getInput(){
-		int num = sb.nextInt();
+		int num = input.nextInt();
 		if (num >= 0)
 			return num;
 		else 
-			Messages.printMessage(Messages.ERROR_MESSAGE);
+			Messages.printMessage(Messages.ILLEGE_NUM_ERROR_MESSAGE);
 		return 0;
 	}
 	
 	public int getNumAccount(){
 		return bank.size();
+	}
+	
+	public void run() throws InterruptedException{
+		init();
+		while(selectFunction()){
+			Thread.sleep(3000);
+			init();
+		}
+		input.close();
 	}
 }

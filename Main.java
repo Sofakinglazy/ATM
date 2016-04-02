@@ -2,9 +2,9 @@ package atm;
 
 public class Main {
 	public static void main(String[] args) {
-		ATM atm = new ATM();
+		Bank bank = new Bank();
 		try {
-			atm.run();
+			bank.run();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

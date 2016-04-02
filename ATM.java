@@ -23,8 +23,8 @@ public class ATM {
 	
 	public boolean selectFunction(){	
 		Messages.printMessage(Messages.FUNCTION_MESSAGE);
-		int num = getInput();
-		switch (num){
+		int option = getInput();
+		switch (option){
 			case 1: withdraw();
 					break;
 			case 2: deposit();
@@ -40,7 +40,7 @@ public class ATM {
 	}
 	
 	private void quit() {
-		Messages.printStarMessage(Messages.QUIT_TITLE);
+		Messages.printStarMessage(Messages.QUIT_TITLE, account);
 	}
 
 	private void printErrorMess() {
@@ -98,11 +98,14 @@ public class ATM {
 		this.PIN = PIN;
 	}
 	
+	public int getPIN(){
+		return PIN;
+	}
+	
 	public void run() throws InterruptedException{
-		init();
+//		init();
 		while (selectFunction()){
 			Thread.sleep(3000);
 		}
-		input.close();
 	}
 }
