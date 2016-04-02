@@ -39,7 +39,7 @@ public class Bank {
 		Messages.printStarMessage(Messages.SIGNUP_TITLE);
 		boolean isValid = false;
 		int account = 0;
-		int PIN = 0;; 
+		int PIN = 0;
 		int PIN1;
 		while(!isValid){
 			Messages.printMessage(Messages.ACCOUNT_MESSAGE);
@@ -61,16 +61,27 @@ public class Bank {
 		bank.add(new ATM(account, PIN));
 	}
 
+	private boolean signIn() {
+		Messages.printStarMessage(Messages.SIGNIN_TITLE);
+		Messages.printMessage(Messages.ACCOUNT_MESSAGE);
+		boolean isMatched = false;
+		int account = 0;
+		while (!isMatched){
+			account = getInput();
+			if (isSameAccount(account)){
+				isMatched = true;
+			}
+			Messages.printMessage(Messages.ACCOUNT_ERROR_MESSAGE);
+		}
+		return isMatched;
+	}
+	
 	private boolean isSameAccount(int account) {
 		for (ATM i : bank){
 			if(i.getAccount() == account)
 				return true;
 		}
 		return false;
-	}
-
-	private void signIn() {
-		
 	}
 	
 	private boolean isSamePIN(int PIN, int PIN1){

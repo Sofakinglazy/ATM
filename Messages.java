@@ -49,7 +49,8 @@ public class Messages {
 	
 	public static final String PIN_VERIFY_ERROR_MESSAGE = "The PIN you entered were not the same!";
 	
-	public static final String ACCOUNT_OCCUPIED_MESSAGE = "The Account you entered has been taken!";
+	public static final String ACCOUNT_OCCUPIED_MESSAGE = "The Account you entered has been taken!"
+			+ "Please enter it again.";
 	
 	public static final String ACCOUNT_ERROR_MESSAGE = "The Account you entered doesn't exsit."
 			+ "Please enter it again.";
