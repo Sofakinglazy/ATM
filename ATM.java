@@ -29,7 +29,9 @@ public class ATM {
 		balance = getInput();
 	}
 	
-	public boolean selectFunction(int num){		
+	public boolean selectFunction(){	
+		printMessage(Messages.FUNCTION_MESSAGE);
+		int num = getInput();
 		switch (num){
 			case 1: withdraw();
 					break;
@@ -40,7 +42,7 @@ public class ATM {
 			case 4: quit();
 					break;
 			default: printErrorMess();
-					break;
+					return false;
 		}
 		return true;
 	}
