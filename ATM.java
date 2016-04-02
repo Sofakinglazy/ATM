@@ -5,8 +5,10 @@ import java.util.Scanner;
 public class ATM {
 	
 	private int balance;
+	private Scanner input;
 	
 	public ATM(){
+		input = new Scanner(System.in);
 		balance = 0;
 	}
 	
@@ -15,8 +17,10 @@ public class ATM {
 	}
 	
 	public void printStarMessage(String message){
-		String stars = "*****************************************\n";
-		printMessage(stars + StringUtil.center(message, stars.length()) + stars);
+		String stars = "*****************************************";
+		printMessage(stars + "\n" 
+			+ StringUtil.center(message, stars.length()) + "\n"
+			 	   + stars);
 	}
 	
 	public void printStarMessage(String message, int num){
@@ -40,9 +44,9 @@ public class ATM {
 			case 3: inquire();
 					break;
 			case 4: quit();
-					break;
-			default: printErrorMess();
 					return false;
+			default: printErrorMess();
+					break;
 		}
 		return true;
 	}
@@ -69,15 +73,21 @@ public class ATM {
 	private void withdraw() {
 		printStarMessage(Messages.WITHDRAW_TITLE);
 		printMessage(Messages.WITHDRAW_MESSGAE);
-		
-		balance -= getInput();
+		int num = getInput();
+		if (balance >= num)
+			balance -= num;
+		else 
+			printMessage(Messages.ERROR_MESSAGE);	
 	}
 
 	private int getInput() {
-		Scanner input = new Scanner(System.in);
 		int num = input.nextInt();
-		input.close();
-		return num;
+		if (num < 0){
+			printMessage(Messages.ERROR_MESSAGE);
+			return 0;
+		} else {
+			return num;
+		}
 	}
 
 	public void setBalance(int balance){
@@ -88,8 +98,11 @@ public class ATM {
 		return balance;
 	}
 	
-	public void run(){
+	public void run() throws InterruptedException{
 		init();
-		selectFunction();
+		while (selectFunction()){
+			Thread.sleep(3000);
+		}
+		input.close();
 	}
 }

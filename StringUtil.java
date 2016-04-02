@@ -11,11 +11,12 @@ public class StringUtil {
 			throw new NullPointerException("pad cannot be null.");
 		if (pad.length() <= 0)
 			throw new IllegalArgumentException("pad cannot be empty.");
-		if (message == null || message.length() <= message.length())
+		if (message == null || message.length() >= length)
 			return message;
 		
 		StringBuilder sb = new StringBuilder();
-		for (int i=0; i < (length - message.length() / 2); i++)
+		
+		for (int i=0; i < (length - message.length()) / 2; i++)
 			sb.append(pad);
 		
 		sb.append(message);

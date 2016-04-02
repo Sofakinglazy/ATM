@@ -12,7 +12,7 @@ public class Messages {
 			+ "4 : Quit \n"
 			+ "Enter your number: ";
 	
-	public static final String ERROR_MESSAGE = "The number you entered is illegal!";
+	public static final String ERROR_MESSAGE = "The number you entered is illegal! Operation was abortion.";
 	
 	public static final String WITHDRAW_MESSGAE = "How much would you like to withdraw?\n"
 			+ "Enter your number: ";
