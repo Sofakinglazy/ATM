@@ -1,9 +1,11 @@
 package atm;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Bank {
+public class Bank implements ActionListener{
 	private Scanner input;
 	private ArrayList<ATM> bank;
 	
@@ -135,5 +137,10 @@ public class Bank {
 			init();
 		}
 		input.close();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
 	}
 }
