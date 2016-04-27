@@ -12,6 +12,12 @@ public class MainFrame extends JFrame{
 		info = new InfoPanel();
 		keyboard = new KeyboardPanel();
 		
+		keyboard.setKeyboardListener(new KeyboardListener() {
+			public void keysEmitted(String keyLabel){
+				info.showText(keyLabel);
+			}
+		});
+		
 		setLayout(new BorderLayout());
 		add(keyboard, BorderLayout.SOUTH);
 		add(info, BorderLayout.NORTH);

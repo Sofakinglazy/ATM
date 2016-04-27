@@ -6,10 +6,10 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
 public class InfoPanel extends JPanel{
-	private JLabel info;
+	private JTextArea info;
 	
 	public InfoPanel(){
-		info = new JLabel("FeelsGoodMan");
+		info = new JTextArea();
 		
 		Dimension dim = getPreferredSize();
 		dim.width = 240;
@@ -23,5 +23,15 @@ public class InfoPanel extends JPanel{
 		setBorder(BorderFactory.createCompoundBorder(outside, inside));
 		
 		add(info);
+	}
+	
+	public void showText(String text){
+		if (text.equalsIgnoreCase("Clear")){
+			info.setText("");
+		} else if (text.equalsIgnoreCase("Enter")){
+			info.append("\n");
+		} else {
+			info.append(text);
+		}
 	}
 }
