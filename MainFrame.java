@@ -14,6 +14,7 @@ public class MainFrame extends JFrame{
 		
 		setLayout(new BorderLayout());
 		add(keyboard, BorderLayout.SOUTH);
+		add(info, BorderLayout.NORTH);
 		
 		pack();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

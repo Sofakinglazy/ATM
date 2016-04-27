@@ -16,7 +16,7 @@ public class KeyboardPanel extends JPanel{
 	private JButton seven;
 	private JButton eight;
 	private JButton nine;
-	private JButton cancel;
+	private JButton clear;
 	private JButton zero;
 	private JButton enter;
 	
@@ -39,7 +39,7 @@ public class KeyboardPanel extends JPanel{
 		seven = new JButton("7");
 		eight = new JButton("8");
 		nine = new JButton("9");
-		cancel = new JButton("Cancel");
+		clear = new JButton("Clear");
 		zero = new JButton("0");
 		enter = new JButton("Enter");
 	}
@@ -111,7 +111,7 @@ public class KeyboardPanel extends JPanel{
 		gd.gridy = 3;
 		gd.weightx = 1;
 		gd.weighty = 1;
-		add(cancel, gd);
+		add(clear, gd);
 		
 		gd.gridx = 1;
 		gd.gridy = 3;
