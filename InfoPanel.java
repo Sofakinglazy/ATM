@@ -10,11 +10,9 @@ public class InfoPanel extends JPanel{
 	
 	public InfoPanel(){
 		info = new JTextArea();
+		info.setEditable(false);
 		
-		Dimension dim = getPreferredSize();
-		dim.width = 240;
-		dim.height = 200;
-		setPreferredSize(dim);
+		setPreferredSize(new Dimension(240, 200));
 		
 		Border raisedEtched = BorderFactory.createBevelBorder(EtchedBorder.RAISED);
 		Border loweredEtched = BorderFactory.createBevelBorder(EtchedBorder.LOWERED);
@@ -22,7 +20,8 @@ public class InfoPanel extends JPanel{
 		Border outside = BorderFactory.createEmptyBorder(5, 10, 5, 10);
 		setBorder(BorderFactory.createCompoundBorder(outside, inside));
 		
-		add(info);
+		setLayout(new BorderLayout());
+		add(info, BorderLayout.CENTER);
 	}
 	
 	public void showText(String text){
